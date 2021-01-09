@@ -1,7 +1,7 @@
 # todos-with-mongodb
 ### Hi there, I'm Arjay Marquez my alias[bossArjay/constMjay]
 
-##I'm a student, currently in 3rd year college and here's what i do;
+## I'm a student, currently in 3rd year college and here's what i do;
 - I'm currently using a vscode as my editor.
 - I'm still developing my skill in frontend and backend.
 
