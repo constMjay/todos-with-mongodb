@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Todo App</title>
+    <!-- Sass Bootstrap -->
+    <link rel="stylesheet" href="../static/assets/css/main.css" />
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="../static/assets/icon/css/all.css" />
+  </head>
+  <body>
+    <div class="container">
+      <main class="main">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <div class="todoHeader">
+            <div class="todoHeader__time">
+              <div class="dayTime">
+                <div class="dayTime__month">
+                  <h2 id="date"></h2>
+                </div>
+                <div class="dayTime__dayYear">
+                  <h5 id="month"></h5>
+                  <h5 id="year"></h5>
+                </div>
+                <div class="dayTime__day">
+                  <h3 id="dayString"></h3>
+                </div>
+              </div>
+            </div>
+            <div class="todoHeader__form">
+              <div class="formContainer hide-form">
+                <form class="form" id="todosForm">
+                  <div class="form__input">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="todos"
+                        placeholder="Enter todos here..."
+                      />
+                    </div>
+                  </div>
+                  <div class="form__btn">
+                    <button
+                      type="submit todosSubmitBtn"
+                      class="btn btn-success"
+                    >
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div class="todosBtnAdd show-button">
+                <button class="btn btn-danger" id="todosBtnAdd">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <div class="todoBody">
+            <table class="table table-striped table-dark">
+              <thead class="text-center">
+                <tr>
+                  <th>Todos</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="text-center" id="todosOutput">
+                <% for (let todosList of todos) { %>
+                <tr id="<%= todosList._id %>">
+                  <td><%= todosList.todos %></td>
+                  <td>
+                    <i class="fas fa-check-circle todosDelete"></i>
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tablePagination" id="pageNumber">
+            <% if(todos.length > 0){ %>
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" id="previousTodos">Previous</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" id="nextTodos">Next</a>
+              </li>
+            </ul>
+            <% } %>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Javascript Script -->
+    <script src="../static/assets/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+// Layout: contains all the CSS that handles the layout, such as the container and any grid systems.
+@import "./base";
+
+// Todo Header
+.main {
+  .todoHeader {
+    background-image: url("../img/todo-header-bg.jpg");
+    background-position: bottom right;
+    height: 20vh;
+    &__time {
+      height: 70%;
+      .dayTime {
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        color: #fff;
+      }
+    }
+    &__form {
+      height: 30%;
+      display: flex;
+      justify-content: center;
+      .formContainer {
+        &.hide-form {
+          display: none;
+        }
+        &.show-form {
+          display: block;
+        }
+        .form {
+          display: flex;
+          justify-content: center;
+          &__input {
+            margin: 0 0.3em 0 0;
+            input {
+              width: 100%;
+            }
+          }
+
+          &__btn {
+            .todosSubmitBtn {
+              i {
+                pointer-events: none;
+              }
+            }
+          }
+        }
+      }
+
+      .todosBtnAdd {
+        border-radius: 50%;
+        &.hide-button {
+          display: none;
+        }
+        &.show-button {
+          display: block;
+        }
+        #todosBtnAdd {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          i {
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+  .todoBody {
+    background-color: $formBody;
+    height: 70vh;
+    width: 100%;
+    padding: 0.9em;
+    table {
+      margin: 0.5em 0 0 0;
+      thead {
+        tr {
+          th:nth-child(1) {
+            width: 80%;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td:nth-child(2) {
+            i {
+              color: $checkBox;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+  .tablePagination {
+    background-color: $formBody;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+
+    .pagination{
+      .page-item{
+        .page-link{
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
