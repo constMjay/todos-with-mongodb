@@ -9,7 +9,7 @@ dotenv.config();
 /**
  * Import Routes
  */
-const todosRoutes = require('./src/routes/todo');
+const todosRoutes = require('./backend/src/routes/todo');
 
 /**
  * Mongodb Mongoose Connection
@@ -20,9 +20,9 @@ mongoose.connect(process.env.mongodbUrl, { useNewUrlParser: true, useUnifiedTopo
 /**
 * View engine setup & Setup public folder
 */
-app.set('views', path.join(__dirname, 'src/views'));
+app.set('views', path.join(__dirname, 'backend/src/views'));
 app.set('view engine', 'ejs');
-app.use("/static", express.static(path.join(__dirname, "../frontend/static")));
+app.use("/static", express.static(path.join(__dirname, "frontend/static")));
 
 /**
  * Middleware
