@@ -69,7 +69,7 @@
   }
   .todoBody {
     background-color: $formBody;
-    height: 70vh;
+    height: 100%;
     width: 100%;
     padding: 0.9em;
     table {
@@ -99,9 +99,9 @@
     display: flex;
     justify-content: center;
 
-    .pagination{
-      .page-item{
-        .page-link{
+    .pagination {
+      .page-item {
+        .page-link {
           cursor: pointer;
         }
       }
