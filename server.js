@@ -14,7 +14,8 @@ const todosRoutes = require('./backend/src/routes/todo');
 /**
  * Mongodb Mongoose Connection
  */
-mongoose.connect(process.env.mongodbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+const url = process.env.MONGODB_URL || process.env.URL
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(console.log("Connected to database!"))
     .catch(err => console.log("Connecting to database has error occured:", err))
 /**
