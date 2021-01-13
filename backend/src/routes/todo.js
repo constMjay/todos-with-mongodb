@@ -44,7 +44,7 @@ router.get("/addTodos", async (req, res) => {
 /**
  * CRUD OPERATIONS
  */
-router.get('/todos', async (req, res) => {
+router.get('/', async (req, res) => {
     const todosList = await retrieveTodos()
 
     /**
