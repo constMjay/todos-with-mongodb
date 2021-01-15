@@ -4,56 +4,43 @@ const todosScheme = require('../model/todos');
 const { validateTodos } = require('../services/validation')
 
 
-router.get("/addTodos", async (req, res) => {
-    const { page, limit } = req.query;
-    const allTodos = await retrieveTodos();
-    const todos = [...allTodos]
-    /**
-     * This is for pagination
-     */
-    const startIndex = (parseInt(page) - 1) * parseInt(limit);
-    const endIndex = parseInt(page) * parseInt(limit)
-
-    const result = {}
-
-    /**
-     * Next Todos Result
-     */
-    if (endIndex < allTodos.length) {
-        result.next = {
-            page: parseInt(page) + 1,
-            limit: parseInt(limit)
-        };
-    }
-
-    /**
-     * Previous Todos Result
-     */
-    if (startIndex > 0) {
-        result.previous = {
-            page: parseInt(page) - 1,
-            limit: parseInt(limit)
-        }
-    }
-
-    result.resultTodos = todos.splice(startIndex, endIndex)
-    res.send(result.resultTodos)
-})
-
 
 /**
  * CRUD OPERATIONS
  */
-router.get('/', async (req, res) => {
-    const todosList = await retrieveTodos()
+// router.get('/', async (req, res) => {
+//     const todosList = await retrieveTodos()
 
+
+//     // res.send(result)
+//     res.render('index', { todos: todosList })
+// });
+router.get('/', (req, res) => {
+    res.redirect('/1')
+})
+
+router.get('/:page', async (req, res, next) => {
     /**
-     * This is for pagination
+     * Pagination
      */
+    const limitPerPage = 5;
+    const page = req.params.page || 1;
 
-    // res.send(result)
-    res.render('index', { todos: todosList })
-});
+    await todosScheme
+        .find()
+        .skip((limitPerPage * page) - limitPerPage)
+        .limit(limitPerPage)
+        .exec((err, todos) => {
+            todosScheme.countDocuments().exec((err, count) => {
+                if (err) return next(err)
+                res.render('todos', {
+                    todos: todos,
+                    currentPage: page,
+                    pages: Math.ceil(count / limitPerPage)
+                })
+            })
+        })
+})
 router.post('/addTodos', async (req, res) => {
     const { todos } = req.body
 
@@ -82,13 +69,6 @@ router.delete('/addTodos', async (req, res) => {
         console.log("Deleting todos has error occured:", error)
     }
 })
-const retrieveTodos = async () => {
-    try {
-        return await todosScheme.find()
-    } catch (error) {
-        console.log("Retrieving Todos Error:", error)
-    }
-}
 
 
 module.exports = router

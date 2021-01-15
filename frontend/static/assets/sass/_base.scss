@@ -1,11 +1,12 @@
 // Base contained within this file are all your resets, variables, mixins, and any utility classes
 
 //Theme Color
-$primary: #eae9f9;
+$primary: #007bff;
 $checkBox: #f9fafc;
 $completed: #ffc00c;
 $formBody: #564a7d;
+$bg-color: #eae9f9;
 //Reset
-$body-bg: $primary;
+$body-bg: $bg-color;
 $pagination-color: $formBody;
 @import "../bootstrap/scss/bootstrap.scss";
